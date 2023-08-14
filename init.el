@@ -11,8 +11,8 @@
 	(vertical-scroll-bars . nil)
 	(horizontal-scroll-bars . nil)))
 
-(when (member "Cascadia Mono" (font-family-list))
-  (add-to-list 'default-frame-alist '(font . "Cascadia Mono-10")))
+(when (member "Iosevka Comfy" (font-family-list))
+  (add-to-list 'default-frame-alist '(font . "Iosevka Comfy-11")))
 
 (electric-pair-mode)
 (repeat-mode)
