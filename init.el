@@ -11,8 +11,8 @@
 	(vertical-scroll-bars . nil)
 	(horizontal-scroll-bars . nil)))
 
-(when (member "Fira Code" (font-family-list))
-  (add-to-list 'default-frame-alist '(font . "Fira Code-10")))
+(when (member "Cascadia Mono" (font-family-list))
+  (add-to-list 'default-frame-alist '(font . "Cascadia Mono-10")))
 
 (electric-pair-mode)
 (repeat-mode)
