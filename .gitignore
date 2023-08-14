@@ -1,0 +1,21 @@
+# package files
+*.*~
+eln-cache/
+ede-projects.el
+etc/
+history
+multisession/
+places
+projects
+recentf
+tramp
+transient/
+tree-sitter/
+workspace/.cache/
+network-security.data
+games/
+url
+eglot-java-eclipse-jdt-cache/
+session.*
+ido.last
+elpa/
