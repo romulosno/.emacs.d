@@ -8,6 +8,4 @@
 (tool-bar-mode -1)
 
 (modify-all-frames-parameters '((height . 35)
-				(width . 100)
-				(background-color . "black")
-				(foreground-color . "white")))
+				(width . 100)))
