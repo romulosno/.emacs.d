@@ -1,100 +1,54 @@
-;;;; Package
-(setq package-quickstart t)
-(setq package-selected-packages '(yaml-mode markdown-mode))
+(exec-path-from-shell-initialize)
 
-;;;; Global modes
-(delete-selection-mode)
-(electric-pair-mode)
-(global-reveal-mode)
+(set-face-attribute 'mode-line nil :box nil)
+(set-face-attribute 'tab-bar nil :inherit nil)
+(set-face-attribute 'tab-bar-tab nil :box nil)
+
+(recentf-mode 1)
+(savehist-mode 1)
+(save-place-mode 1)
+(electric-pair-mode 1)
 (repeat-mode)
-(save-place-mode)
-(savehist-mode)
 
-;;; Keybindings
-(global-set-key (kbd "<f5>") #'org-capture)
-(global-set-key (kbd "C-z") #'repeat)
-(global-set-key (kbd "C-c a") #'org-agenda-list)
-(global-set-key (kbd "C-c o") #'outline-minor-mode)
-(global-set-key (kbd "C-c i") #'imenu)
-(global-set-key (kbd "C-c k") #'kill-current-buffer)
+(setq custom-file (expand-file-name "custom.el" user-emacs-directory))
+(load custom-file :noerror)
 
-;;; Better defaults
-
-;;;; Start screen
 (setq inhibit-startup-screen t)
-(setq initial-major-mode 'fundamental-mode)
 (setq initial-scratch-message nil)
+(setq delete-by-moving-to-trash t)
+(setq kill-whole-line t)
 
-;;;; Completions
 (setq completion-show-help nil)
-(setq completions-max-height 15)
+(setq completions-max-height 20)
+(setq completions-format 'one-column)
 (setq tab-always-indent 'complete)
 
-;;;; SMTP
-(setq send-mail-function 'smtpmail-send-it)
-(with-eval-after-load 'smtp
-  (setq smtpmail-smtp-server "smtp.gmail.com"))
+(setq tab-bar-close-button-show nil
+      tab-bar-new-button-show nil)
 
-;;;; Outline
-(with-eval-after-load 'outline
-  (setq outline-default-state 'outline-show-only-headings)
-  (setq outline-minor-mode-cycle t)
-  (setq outline-minor-mode-prefix "\M-o"))
+(setq ediff-window-setup-function 'ediff-setup-windows-plain)
 
-;;;; Ediff
-(with-eval-after-load 'ediff
-  (setq ediff-split-window-function 'split-window-horizontally)
-  (setq ediff-window-setup-function 'ediff-setup-windows-plain))
+(add-hook 'outline-minor-mode-hook #'reveal-mode)
+(setq outline-minor-mode-prefix "\M-o"
+      outline-default-state 'outline-show-only-headings
+      outline-minor-mode-cycle t
+      outline-minor-mode-cycle-filter 'bolp)
 
-;;;; Org mode
-(with-eval-after-load 'org
-  (setq org-use-speed-commands t))
-
-(setq org-capture-templates
-      '(("t" "Todo" entry
-	 (file+headline "agenda.org" "Tasks")
-	 "* TODO %?\12  %i\12  %a")
-	("j" "Journal" entry
-	 (file+olp+datetree "journal.org")
-	 "* %?\12Entered on %U\12  %i\12  %a")))
-
-;;;; Dired
-(with-eval-after-load 'dired
-  (setq dired-listing-switches "-alh --group-directories-first")
-  (require 'dired-x))
-
-;;;; Misc
-(setq kill-whole-line t)
-(setq ring-bell-function 'ignore)
-
-;;; Development
-
-;;;; Compilation
-(with-eval-after-load 'compile
-  (setq compilation-scroll-output t))
-
-;;;; Flymake
-(with-eval-after-load 'flymake
-  (let ((map flymake-mode-map))
-    (define-key map (kbd "M-n") #'flymake-goto-next-error)
-    (define-key map (kbd "M-p") #'flymake-goto-prev-error)
-    (define-key map (kbd "C-c c e") #'flymake-show-buffer-diagnostics)))
-
-;;;; Eglot
 (with-eval-after-load 'eglot
-  (let ((map eglot-mode-map))
-    (define-key map (kbd "C-c c f") #'eglot-format)
-    (define-key map (kbd "C-c c a") #'eglot-code-actions)
-    (define-key map (kbd "C-c c s") #'eglot-shutdown)
-    (define-key map (kbd "C-c c r") #'eglot-rename))
-  
-  (cl-defmethod eglot-execute-command
-    (_server (_cmd (eql java.apply.workspaceEdit)) arguments)
-    "Eclipse JDT breaks spec and replies with edits as arguments."
-    (mapc #'eglot--apply-workspace-edit arguments)))
+  (define-key eglot-mode-map (kbd "<f5>") #'eglot-code-actions)
+  (define-key eglot-mode-map (kbd "<f6>") #'eglot-rename)
+  (define-key eglot-mode-map (kbd "<f7>") #'eglot-format))
 
-;;;; Java
-(defun java-set-tab-width ()
-  (setq tab-width 4
-	c-basic-offset 2))
-(add-hook 'java-mode-hook #'java-set-tab-width)
+(with-eval-after-load 'flymake
+  (define-key flymake-mode-map (kbd "<f8>") #'flymake-show-diagnostics-buffer)
+  (define-key flymake-mode-map (kbd "M-n") #'flymake-goto-next-error)
+  (define-key flymake-mode-map (kbd "M-p") #'flymake-goto-prev-error))
+
+(with-eval-after-load 'dired
+  (require 'dired-x))
+(setq dired-listing-switches "--group-directories-first -al")
+
+(global-set-key (kbd "C-z") #'repeat)
+(global-set-key (kbd "C-c f") #'ffap)
+(global-set-key (kbd "C-c o") #'outline-minor-mode)
+(global-set-key (kbd "C-c k") #'kill-current-buffer)
