@@ -1,14 +1,16 @@
+(require 'eglot)
+(require 'flymake)
+(require 'dired-x)
+
 (exec-path-from-shell-initialize)
-
-(set-face-attribute 'mode-line nil :box nil)
-(set-face-attribute 'tab-bar nil :inherit nil)
-(set-face-attribute 'tab-bar-tab nil :box nil)
-
+(repeat-mode 1)
 (recentf-mode 1)
 (savehist-mode 1)
 (save-place-mode 1)
 (electric-pair-mode 1)
-(repeat-mode)
+
+(set-face-attribute 'mode-line nil :background "#2e3440" :foreground "#c7cdd6")
+(set-face-attribute 'tab-bar nil :inherit nil)
 
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
 (load custom-file :noerror)
@@ -23,18 +25,30 @@
 (setq completions-format 'one-column)
 (setq tab-always-indent 'complete)
 
-(setq tab-bar-close-button-show nil
-      tab-bar-new-button-show nil)
+(setq dired-listing-switches "--group-directories-first -al")
 
 (setq ediff-window-setup-function 'ediff-setup-windows-plain)
 
-(add-hook 'outline-minor-mode-hook #'reveal-mode)
-(setq outline-minor-mode-prefix "\M-o"
+(setq outline-minor-mode-prefix "\C-co"
       outline-default-state 'outline-show-only-headings
       outline-minor-mode-cycle t
       outline-minor-mode-cycle-filter 'bolp)
 
+(add-hook 'outline-minor-mode-hook #'reveal-mode)
+
+(global-set-key (kbd "<f8>") #'outline-minor-mode)
+(global-set-key (kbd "C-z") #'repeat)
+(global-set-key (kbd "C-c f") #'ffap)
+(global-set-key (kbd "C-c k") #'kill-current-buffer)
+(global-set-key (kbd "C-c l") #'display-line-numbers-mode)
+(global-set-key (kbd "M-o") #'other-window)
+
 (with-eval-after-load 'eglot
+  (cl-defmethod eglot-execute-command
+    (_server (_cmd (eql java.apply.workspaceEdit)) arguments)
+    "Eclipse JDT breaks spec and replies with edits as arguments."
+    (mapc #'eglot--apply-workspace-edit arguments))
+
   (define-key eglot-mode-map (kbd "<f5>") #'eglot-code-actions)
   (define-key eglot-mode-map (kbd "<f6>") #'eglot-rename)
   (define-key eglot-mode-map (kbd "<f7>") #'eglot-format))
@@ -43,12 +57,3 @@
   (define-key flymake-mode-map (kbd "<f8>") #'flymake-show-diagnostics-buffer)
   (define-key flymake-mode-map (kbd "M-n") #'flymake-goto-next-error)
   (define-key flymake-mode-map (kbd "M-p") #'flymake-goto-prev-error))
-
-(with-eval-after-load 'dired
-  (require 'dired-x))
-(setq dired-listing-switches "--group-directories-first -al")
-
-(global-set-key (kbd "C-z") #'repeat)
-(global-set-key (kbd "C-c f") #'ffap)
-(global-set-key (kbd "C-c o") #'outline-minor-mode)
-(global-set-key (kbd "C-c k") #'kill-current-buffer)
