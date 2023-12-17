@@ -2,7 +2,6 @@
 			    (menu-bar-lines . nil)
 			    (vertical-scroll-bars . nil)
 			    (horizontal-scroll-bars . nil)
-			    (font . "Iosevka Comfy-11")
 			    (background-color . "#151821")
  			    (foreground-color . "#c7cdd6")))
 
