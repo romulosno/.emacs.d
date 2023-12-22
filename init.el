@@ -23,6 +23,10 @@
 (setq dired-listing-switches "--group-directories-first -al")
 
 (setq ediff-window-setup-function 'ediff-setup-windows-plain)
+(setq ediff-keep-variants nil)
+
+(setq tab-bar-close-last-tab-choice 'tab-bar-mode-disable)
+(setq tab-bar-select-tab-modifiers '(meta))
 
 (setq outline-minor-mode-prefix "\C-co"
       outline-default-state 'outline-show-only-headings
@@ -36,7 +40,6 @@
 (global-set-key (kbd "C-z") #'repeat)
 (global-set-key (kbd "C-c f") #'ffap)
 (global-set-key (kbd "C-c k") #'kill-current-buffer)
-(global-set-key (kbd "C-c l") #'display-line-numbers-mode)
 (global-set-key (kbd "M-o") #'other-window)
 
 (with-eval-after-load 'eglot
