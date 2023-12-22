@@ -2,7 +2,7 @@
 			    (menu-bar-lines . nil)
 			    (vertical-scroll-bars . nil)
 			    (horizontal-scroll-bars . nil)
-			    (background-color . "#151821")
- 			    (foreground-color . "#c7cdd6")))
+			    (background-color . "gray8")
+			    (foreground-color . "white")))
 
 (setq gc-cons-threshold 3200000)

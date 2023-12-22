@@ -1,19 +1,14 @@
-(require 'eglot)
-(require 'flymake)
-(require 'dired-x)
-
-(exec-path-from-shell-initialize)
 (repeat-mode 1)
 (recentf-mode 1)
 (savehist-mode 1)
 (save-place-mode 1)
 (electric-pair-mode 1)
 
-(set-face-attribute 'mode-line nil :background "#2e3440" :foreground "#c7cdd6")
-(set-face-attribute 'tab-bar nil :inherit nil)
-
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
 (load custom-file :noerror)
+
+(set-face-attribute 'tab-bar nil :inherit nil)
+(set-face-attribute 'mode-line nil :background "gray25" :foreground "white")
 
 (setq inhibit-startup-screen t)
 (setq initial-scratch-message nil)
@@ -34,6 +29,7 @@
       outline-minor-mode-cycle t
       outline-minor-mode-cycle-filter 'bolp)
 
+(add-hook 'prog-mode-hook 'display-line-numbers-mode)
 (add-hook 'outline-minor-mode-hook #'reveal-mode)
 
 (global-set-key (kbd "<f8>") #'outline-minor-mode)
@@ -44,11 +40,6 @@
 (global-set-key (kbd "M-o") #'other-window)
 
 (with-eval-after-load 'eglot
-  (cl-defmethod eglot-execute-command
-    (_server (_cmd (eql java.apply.workspaceEdit)) arguments)
-    "Eclipse JDT breaks spec and replies with edits as arguments."
-    (mapc #'eglot--apply-workspace-edit arguments))
-
   (define-key eglot-mode-map (kbd "<f5>") #'eglot-code-actions)
   (define-key eglot-mode-map (kbd "<f6>") #'eglot-rename)
   (define-key eglot-mode-map (kbd "<f7>") #'eglot-format))
