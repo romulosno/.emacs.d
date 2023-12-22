@@ -1,3 +1,6 @@
+(when (member "Monaco" (font-family-list))
+  (add-to-list 'default-frame-alist '(font . "Monaco-11") t))
+
 (repeat-mode 1)
 (recentf-mode 1)
 (savehist-mode 1)
