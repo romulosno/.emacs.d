@@ -1,8 +1,3 @@
-(setq default-frame-alist '((tool-bar-lines . nil)
-			    (menu-bar-lines . nil)
-			    (vertical-scroll-bars . nil)
-			    (horizontal-scroll-bars . nil)
-			    (background-color . "gray12")
+(setq default-frame-alist '((font . "DejaVu Sans Mono-11")
+			    (background-color . "black")
 			    (foreground-color . "white")))
-
-(setq gc-cons-threshold 3200000)
