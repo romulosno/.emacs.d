@@ -1,10 +1,11 @@
+(add-to-list 'default-frame-alist '(font . "Hack-10.5"))
 (add-to-list 'default-frame-alist '(background-color . "gray10"))
-(add-to-list 'default-frame-alist '(foreground-color . "white"))
-(set-face-attribute 'mode-line nil
-		    :background "gray20"
-		    :foreground "white")
+(add-to-list 'default-frame-alist '(foreground-color . "ivory"))
+(set-face-attribute 'mode-line nil :background "gray20" :foreground "ivory")
+(set-face-attribute 'tab-bar nil :inherit 'default)
 
 (require 'dired-x)
+(require 'ffap)
 
 (menu-bar-mode 0)
 (tool-bar-mode 0)
