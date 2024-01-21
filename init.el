@@ -1,6 +1,6 @@
-(add-to-list 'default-frame-alist '(background-color . "#16191c"))
-(add-to-list 'default-frame-alist '(foreground-color . "white")))
-(when (member ("Hack" (font-family-list)))
+(add-to-list 'default-frame-alist '(background-color . "#13171f"))
+(add-to-list 'default-frame-alist '(foreground-color . "white"))
+(when (member "Hack" (font-family-list))
   (add-to-list 'default-frame-alist '(font . "Hack-11")))
 
 (set-face-attribute 'mode-line nil
