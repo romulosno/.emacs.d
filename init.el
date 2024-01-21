@@ -1,16 +1,16 @@
-(add-to-list 'default-frame-alist '(font . "DejaVu Sans Mono-10"))
-(add-to-list 'default-frame-alist '(background-color . "black"))
+(add-to-list 'default-frame-alist '(background-color . "gray10"))
 (add-to-list 'default-frame-alist '(foreground-color . "white"))
+(set-face-attribute 'mode-line nil
+		    :background "gray20"
+		    :foreground "white")
 
-(set-face-attribute 'mode-line nil :background "gray15" :foreground "white")
+(require 'dired-x)
 
 (menu-bar-mode 0)
 (tool-bar-mode 0)
 (scroll-bar-mode 0)
-
 (electric-pair-mode 1)
 (savehist-mode 1)
-(save-place-mode 1)
 
 (add-hook 'org-mode-hook #'abbrev-mode)
 (add-hook 'prog-mode-hook #'abbrev-mode)
@@ -28,6 +28,7 @@
 (setq enable-local-variables :all)
 (setq project-mode-line t)
 (setq tab-always-indent 'complete)
+(setq completion-show-help nil)
 
 (global-set-key "\C-z" #'repeat)
 (global-set-key "\C-ca" #'org-agenda)
