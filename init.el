@@ -1,59 +1,44 @@
-(add-to-list 'default-frame-alist '(background-color . "#13171f"))
-(add-to-list 'default-frame-alist '(foreground-color . "white"))
-(when (member "Hack" (font-family-list))
-  (add-to-list 'default-frame-alist '(font . "Hack-11")))
-
-(set-face-attribute 'mode-line nil
-		    :background "gray20"
-		    :foreground "white")
-(set-face-attribute 'tab-bar nil
-		    :inherit 'default
-		    :background "gray20"
-		    :foreground "white")
-(set-face-attribute 'tab-bar-tab-inactive nil
-		    :background "gray10")
-
 (require 'dired-x)
-(require 'ffap)
+(require 'package)
+(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
 
-(menu-bar-mode 0)
-(tool-bar-mode 0)
-(scroll-bar-mode 0)
-(electric-pair-mode 1)
-(savehist-mode 1)
-
-(add-hook 'org-mode-hook #'abbrev-mode)
-(add-hook 'prog-mode-hook #'abbrev-mode)
+(set-face-attribute 'variable-pitch nil :font "Droid Sans-11")
+(set-face-attribute 'fringe nil :background "gray10")
+(set-face-attribute 'region nil :background "gray20")
+(set-face-attribute 'mode-line nil :background "gray30" :foreground "white")
 
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
 (load custom-file t)
 
+(electric-pair-mode 1)
+(savehist-mode 1)
+(save-place-mode 1)
+(delete-selection-mode 1)
+
+(setq repeat-exit-key "RET")
+(repeat-mode 1)
+
 (setq inhibit-startup-screen t)
-(setq read-process-output-max (* 1024 1024))
-(setq use-short-answers t)
 (setq kill-whole-line t)
 (setq visible-bell t)
-(setq enable-local-variables :all)
-(setq project-mode-line t)
+(setq set-mark-command-repeat-pop t)
 
-(setq org-use-speed-commands t
-      org-confirm-babel-evaluate nil)
+(setq-default truncate-lines t)
+(setq-default indent-tabs-mode nil)
+(setq-default tab-width 4)
 
-(setq tab-always-indent 'complete
-      completion-show-help nil)
+(setq tab-always-indent 'complete)
+(setq completion-show-help nil)
+(add-to-list 'completion-styles 'flex t)
 
-(setq tab-bar-select-tab-modifiers '(meta)
-      tab-bar-show 1)
+(defalias 'yes-or-no-p 'y-or-n-p)
 
-(global-set-key "\C-z" #'repeat)
+(add-hook 'org-mode-hook #'abbrev-mode)
+(add-hook 'prog-mode-hook #'abbrev-mode)
+
+(global-set-key "\C-ck" #'kill-current-buffer)
+(global-set-key "\C-ch" #'global-hl-line-mode)
 (global-set-key "\C-ca" #'org-agenda)
-(global-set-key "\C-cl" #'org-store-link)
+(global-set-key "\C-z" #'repeat)
 
-(with-eval-after-load 'flymake
-  (define-key flymake-mode-map (kbd "M-n") #'flymake-goto-next-error)
-  (define-key flymake-mode-map (kbd "M-p") #'flymake-goto-prev-error))
 
-(with-eval-after-load 'eglot
-  (define-key eglot-mode-map (kbd "C-c c a") #'eglot-code-actions)
-  (define-key eglot-mode-map (kbd "C-c c r") #'eglot-rename)
-  (define-key eglot-mode-map (kbd "C-c c f") #'eglot-format))
