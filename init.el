@@ -3,7 +3,9 @@
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
 
 (set-face-attribute 'variable-pitch nil :font "Droid Sans-11")
-(set-face-attribute 'fringe nil :background "ivory2")
+(set-face-attribute 'fringe nil :background "#1c222b")
+(set-face-attribute 'region nil :background "#2e3440")
+(set-face-attribute 'mode-line nil :background "#343a42" :foreground "white")
 
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
 (load custom-file t)
