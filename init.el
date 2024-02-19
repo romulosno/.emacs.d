@@ -2,10 +2,9 @@
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
 
-(set-face-attribute 'variable-pitch nil :font "Droid Sans-11")
-(set-face-attribute 'fringe nil :background "#1c222b")
-(set-face-attribute 'region nil :background "#2e3440")
-(set-face-attribute 'mode-line nil :background "#343a42" :foreground "white")
+(set-face-attribute 'fringe nil :background "#e0ddce")
+(set-face-attribute 'variable-pitch nil :font "Liberation Serif-11")
+(set-face-attribute 'fixed-pitch nil :font "DejaVu Sans Mono-10")
 
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
 (load custom-file t)
@@ -26,6 +25,7 @@
 (setq-default truncate-lines t)
 (setq-default indent-tabs-mode nil)
 (setq-default tab-width 4)
+(setq js-indent-level 2)
 
 (setq tab-always-indent 'complete)
 (setq completion-show-help nil)
@@ -33,12 +33,10 @@
 
 (defalias 'yes-or-no-p 'y-or-n-p)
 
-(add-hook 'org-mode-hook #'abbrev-mode)
 (add-hook 'prog-mode-hook #'abbrev-mode)
+(add-hook 'org-mode-hook #'abbrev-mode)
 
 (global-set-key "\C-ck" #'kill-current-buffer)
 (global-set-key "\C-ch" #'global-hl-line-mode)
 (global-set-key "\C-ca" #'org-agenda)
 (global-set-key "\C-z" #'repeat)
-
-
