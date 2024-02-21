@@ -39,7 +39,7 @@
 (custom-theme-set-faces
  'user
  '(cursor ((t (:background "#447c80"))))
- '(default ((t (:background "#072933" :foreground "#e6e6d1" :font "Hack-11"))))
+ '(default ((t (:background "#0c2d36" :foreground "#e6e6d1" :font "Hack-11"))))
  '(diff-refine-added ((t (:background "#164508"))))
  '(diff-added ((t (:background "#123308"))))
  '(diff-removed ((t (:background "#380c04"))))
@@ -49,10 +49,10 @@
  '(font-lock-comment-face ((t (:foreground "#7c909c"))))
  '(font-lock-constant-face ((t (:foreground "#9bbae0"))))
  '(font-lock-builtin-face ((t (:foreground "#ffa07a"))))
- '(fringe ((t (:background "#0f2b33"))))
- '(mode-line ((t (:background "#454737"))))
+ '(fringe ((t (:background "#0c2830"))))
+ '(mode-line ((t (:background "#5a5c4a"))))
  '(region ((t (:background "#153a45"))))
- '(tab-bar ((t (:background "#454737"))))
+ '(tab-bar ((t (:background "#5a5c4a"))))
  '(tab-bar-tab-inactive ((t (:background "#484a3d" :foreground "#c2c2ba")))))
 
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
