@@ -2,8 +2,11 @@
 (setq read-process-output-max (* 1024 1024))
 (setq gc-cons-threshold 6400000)
 
+;; Faces
 (set-face-attribute 'mode-line nil :background "gray30" :foreground "white")
-(set-face-attribute 'region nil :background "gray25" :foreground "white")
+(set-face-attribute 'region nil :background "gray30" :foreground "white")
+(set-face-attribute 'fringe nil :background "gray20")
+(set-face-attribute 'line-number nil :background "gray17")
 
 ;; Global modes
 (electric-pair-mode 1)
@@ -52,15 +55,18 @@
   (define-key eglot-mode-map (kbd "<f7>") #'eglot-code-actions)
   (define-key eglot-mode-map (kbd "<f6>") #'eglot-rename))
 
-;; Flymake keys
+;; Flymake
 (with-eval-after-load 'flymake
   (define-key flymake-mode-map (kbd "M-n") #'flymake-goto-next-error)
   (define-key flymake-mode-map (kbd "M-p") #'flymake-goto-prev-error))
 
-;; Dired config
+;; Dired
 (with-eval-after-load 'dired
   (require 'dired-x))
+(setq dired-listing-switches "-lXGh --group-directories-first")
 
+;; Diff
 (setq ediff-window-setup-function 'ediff-setup-windows-plain)
+(setq ediff-keep-variants nil)
 (setq diff-font-lock-syntax nil)
 (setq smerge-command-prefix "\e")
