@@ -1,71 +1,66 @@
-(menu-bar-mode 0)
-(tool-bar-mode 0)
-(scroll-bar-mode 0)
-(indent-tabs-mode 0)
+;; Performance
+(setq read-process-output-max (* 1024 1024))
+(setq gc-cons-threshold 6400000)
 
-(delete-selection-mode 1)
+(set-face-attribute 'mode-line nil :background "gray30" :foreground "white")
+(set-face-attribute 'region nil :background "gray25" :foreground "white")
+
+;; Global modes
 (electric-pair-mode 1)
 (save-place-mode 1)
 (savehist-mode 1)
 
+;; Custom
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
 (load custom-file t)
 
+;; Repeat
 (setq repeat-exit-key "RET")
 (repeat-mode 1)
 
-(setq-default truncate-lines t)
-(setq-default tab-width 4)
-(setq js-indent-level 2)
+;; Indent
+(setq tab-always-indent 'complete)
+(indent-tabs-mode 0)
 
-(setq tab-always-indent 'complete
-	  completion-show-help nil
-	  completions-format 'one-column)
+;; Better on
+(setq kill-whole-line t)
+(setq set-mark-command-repeat-pop t)
+(setq use-short-answers t)
+(setq visible-bell t)
+(setq view-read-only t)
+(setq inhibit-startup-screen t)
 
-(setq inhibit-startup-screen t
-	  kill-whole-line t
-	  set-mark-command-repeat-pop t
-	  use-short-answers t
-	  visible-bell t
-	  view-read-only t)
+;; Completions
+(setq completion-show-help nil)
+(setq completions-max-height 20)
+(setq-default abbrev-mode t)
+(add-hook 'prog-mode-hook #'display-line-numbers-mode)
+(add-hook 'java-mode-hook #'eglot-java-mode)
+(add-hook 'org-mode-hok #'org-indent-mode)
 
-(setq tab-bar-close-button-show nil
-	  tab-bar-new-button-show nil
-	  tab-bar-show 1)
-
-(with-eval-after-load 'dired
-  (require 'dired-x))
-
-(add-hook 'prog-mode-hook #'abbrev-mode)
-(add-hook 'org-mode-hook #'abbrev-mode)
-
-(global-set-key "\C-ck" #'kill-current-buffer)
-(global-set-key "\C-ch" #'global-hl-line-mode)
-(global-set-key "\C-ca" #'org-agenda)
+;; Global keys
 (global-set-key "\C-cl" #'org-store-link)
-(global-set-key "\C-cd" #'delete-pair)
-(global-set-key "\C-cs" #'scroll-lock-mode)
+(global-set-key "\C-ck" #'kill-current-buffer)
 (global-set-key "\C-z" #'repeat)
 (global-set-key "\M-u" #'upcase-dwim)
 (global-set-key "\M-l" #'downcase-dwim)
 (global-set-key "\M-c" #'capitalize-dwim)
 
-(custom-theme-set-faces
- 'user
- '(cursor ((t (:background "#447c80"))))
- '(default ((t (:background "#0c2830" :foreground "#e6e6d1" :font "Hack-11"))))
- '(diff-refine-added ((t (:background "#164508"))))
- '(diff-added ((t (:background "#123308"))))
- '(diff-removed ((t (:background "#380c04"))))
- '(diff-refine-removed ((t (:background "#4a150b"))))
- '(font-lock-keyword-face ((t (:foreground "#daa520"))))
- '(font-lock-string-face ((t (:foreground "#a0b6bd"))))
- '(font-lock-comment-face ((t (:foreground "#7c909c"))))
- '(font-lock-constant-face ((t (:foreground "#9bbae0"))))
- '(font-lock-builtin-face ((t (:foreground "#ffa07a"))))
- '(fringe ((t (:background "#0c2830"))))
- '(mode-line ((t (:background "#214e6e"))))
- '(region ((t (:background "#153a45"))))
- '(tab-bar ((t (:background "#5a5c4a"))))
- '(tab-bar-tab-inactive ((t (:background "#484a3d" :foreground "#c2c2ba")))))
+;; Eglot 
+(with-eval-after-load 'eglot
+  (define-key eglot-mode-map (kbd "<f5>") #'eglot-format)
+  (define-key eglot-mode-map (kbd "<f7>") #'eglot-code-actions)
+  (define-key eglot-mode-map (kbd "<f6>") #'eglot-rename))
 
+;; Flymake keys
+(with-eval-after-load 'flymake
+  (define-key flymake-mode-map (kbd "M-n") #'flymake-goto-next-error)
+  (define-key flymake-mode-map (kbd "M-p") #'flymake-goto-prev-error))
+
+;; Dired config
+(with-eval-after-load 'dired
+  (require 'dired-x))
+
+(setq ediff-window-setup-function 'ediff-setup-windows-plain)
+(setq diff-font-lock-syntax nil)
+(setq smerge-command-prefix "\e")
