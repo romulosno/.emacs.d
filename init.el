@@ -1,12 +1,8 @@
+(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
+
 ;; Performance
 (setq read-process-output-max (* 1024 1024))
 (setq gc-cons-threshold 6400000)
-
-;; Faces
-(set-face-attribute 'mode-line nil :background "gray30" :foreground "white")
-(set-face-attribute 'region nil :background "gray30" :foreground "white")
-(set-face-attribute 'fringe nil :background "gray20")
-(set-face-attribute 'line-number nil :background "gray17")
 
 ;; Global modes
 (electric-pair-mode 1)
@@ -70,3 +66,5 @@
 (setq ediff-keep-variants nil)
 (setq diff-font-lock-syntax nil)
 (setq smerge-command-prefix "\e")
+
+(set-face-attribute 'mode-line nil :background "gray30" :foreground "white")
