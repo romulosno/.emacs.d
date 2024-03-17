@@ -1,7 +1,7 @@
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
 
 (setq read-process-output-max (* 1024 1024))
-(setq gc-cons-threshold 12800000)
+(setq gc-cons-threshold 25600000)
 
 (electric-pair-mode 1)
 (save-place-mode 1)
@@ -30,15 +30,14 @@
 (setq tab-always-indent 'complete)
 (setq completion-show-help nil)
 (setq completions-max-height 20)
+
 (setq-default abbrev-mode t)
+(setq-default frame-title-format "emacs")
+(setq-default fill-column 80)
 
 (setq outline-minor-mode-prefix "\M-o")
 (setq outline-minor-mode-cycle t)
 (setq outline-minor-mode-cycle-filter 'bolp)
-
-(setq tab-bar-new-button-show nil)
-(setq tab-bar-close-button-show nil)
-(setq tab-bar-show 1)
 
 (setq ediff-window-setup-function 'ediff-setup-windows-plain)
 (setq ediff-keep-variants nil)
@@ -73,5 +72,4 @@
   (define-key flymake-mode-map (kbd "M-n") #'flymake-goto-next-error)
   (define-key flymake-mode-map (kbd "M-p") #'flymake-goto-prev-error))
 
-(set-face-attribute 'variable-pitch nil :font "Droid Sans-12")
-(set-face-attribute 'fringe nil :background nil)
+(set-face-attribute 'fringe nil :background "#eeeee0")
