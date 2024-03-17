@@ -19,6 +19,10 @@
 (setq visible-bell t) 
 (setq view-read-only t)
 
+(setq mouse-wheel-progressive-speed nil)
+
+(setq message-send-mail-function 'smtpmail-send-it)
+
 (setq inhibit-startup-screen t)
 (setq initial-major-mode 'fundamental-mode)
 (setq initial-scratch-message nil)
@@ -32,13 +36,28 @@
 (setq outline-minor-mode-cycle t)
 (setq outline-minor-mode-cycle-filter 'bolp)
 
-(add-hook 'org-mode-hok #'org-indent-mode)
+(setq tab-bar-new-button-show nil)
+(setq tab-bar-close-button-show nil)
+(setq tab-bar-show 1)
+
+(setq ediff-window-setup-function 'ediff-setup-windows-plain)
+(setq ediff-keep-variants nil)
+(setq diff-font-lock-syntax nil)
+(setq smerge-command-prefix "\e")
+
+(setq dired-listing-switches "-lXGh --group-directories-first")
+(with-eval-after-load 'dired
+  (require 'dired-x))
+
+(add-hook 'org-mode-hook #'org-indent-mode)
+(add-hook 'prog-mode-hook #'display-line-numbers-mode)
 
 (global-set-key "\C-cl" #'org-store-link)
 (global-set-key "\C-ca" #'org-agenda)
 (global-set-key "\C-co" #'outline-minor-mode)
 (global-set-key "\C-ck" #'kill-current-buffer)
-(global-set-key "\C-cf" #'find-name-dired)
+(global-set-key "\C-cs" #'find-name-dired)
+(global-set-key "\C-cf" #'flyspell-buffer)
 (global-set-key "\C-z" #'repeat)
 
 (global-set-key "\M-u" #'upcase-dwim)
@@ -54,12 +73,5 @@
   (define-key flymake-mode-map (kbd "M-n") #'flymake-goto-next-error)
   (define-key flymake-mode-map (kbd "M-p") #'flymake-goto-prev-error))
 
-(setq dired-listing-switches "-lXGh --group-directories-first")
-(with-eval-after-load 'dired
-  (require 'dired-x))
-
-(setq ediff-window-setup-function 'ediff-setup-windows-plain)
-(setq ediff-keep-variants nil)
-(setq diff-font-lock-syntax nil)
-(setq smerge-command-prefix "\e")
-
+(set-face-attribute 'variable-pitch nil :font "Droid Sans-12")
+(set-face-attribute 'fringe nil :background nil)
