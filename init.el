@@ -30,10 +30,7 @@
 (setq tab-always-indent 'complete)
 (setq completion-show-help nil)
 (setq completions-max-height 20)
-
 (setq-default abbrev-mode t)
-(setq-default frame-title-format "emacs")
-(setq-default fill-column 80)
 
 (setq outline-minor-mode-prefix "\M-o")
 (setq outline-minor-mode-cycle t)

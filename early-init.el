@@ -1,5 +1,5 @@
-(setq default-frame-alist '((font . "DejaVu Sans Mono-11")
-			    (background-color . "gray95")
+(setq default-frame-alist '((font . "Hack-11")
+			    (background-color . "#F0F0F0")
 			    (width . 100)
 			    (height . 40)
 			    (vertical-scroll-bars)
