@@ -72,6 +72,3 @@
   (define-key flymake-mode-map (kbd "M-n") #'flymake-goto-next-error)
   (define-key flymake-mode-map (kbd "M-p") #'flymake-goto-prev-error))
 
-(set-face-attribute 'fringe nil :background "#1a2024")
-(set-face-attribute 'region nil :background "#333d42")
-(set-face-attribute 'mode-line nil :background "#3a414a" :foreground "white")
