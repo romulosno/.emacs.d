@@ -69,3 +69,5 @@
   (define-key flymake-mode-map (kbd "M-n") #'flymake-goto-next-error)
   (define-key flymake-mode-map (kbd "M-p") #'flymake-goto-prev-error))
 
+(set-face-attribute 'mode-line nil :background "gray10" :foreground "white" :box "gray30")
+

@@ -1,5 +1,6 @@
 (setq default-frame-alist '((font . "Hack-11")
-			    (background-color . "#F0F0F0")
+			    (background-color . "#121212")
+			    (foreground-color . "#FFFFFF")
 			    (width . 100)
 			    (height . 40)
 			    (vertical-scroll-bars)
