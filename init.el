@@ -1,5 +1,3 @@
-(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
-
 (setq read-process-output-max (* 1024 1024))
 (setq gc-cons-threshold 25600000)
 
