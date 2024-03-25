@@ -60,14 +60,5 @@
 (global-set-key "\M-l" #'downcase-dwim)
 (global-set-key "\M-c" #'capitalize-dwim)
 
-(with-eval-after-load 'eglot
-  (define-key eglot-mode-map (kbd "<f5>") #'eglot-code-actions)
-  (define-key eglot-mode-map (kbd "<f6>") #'eglot-rename)
-  (define-key eglot-mode-map (kbd "<f7>") #'eglot-format))
-
-(with-eval-after-load 'flymake
-  (define-key flymake-mode-map (kbd "M-n") #'flymake-goto-next-error)
-  (define-key flymake-mode-map (kbd "M-p") #'flymake-goto-prev-error))
-
 (with-eval-after-load 'dired
   (require 'dired-x))
