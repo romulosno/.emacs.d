@@ -1,5 +1,5 @@
-(add-to-list 'default-frame-alist '(background-color . "gray87"))
-(set-face-attribute 'fringe nil :background "gray85")
+(add-to-list 'default-frame-alist '(background-color . "gray86"))
+(set-face-attribute 'fringe nil :background "gray83")
 
 (scroll-bar-mode 0)
 (menu-bar-mode 0)
