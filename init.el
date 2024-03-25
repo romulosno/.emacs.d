@@ -1,13 +1,16 @@
-(add-to-list 'default-frame-alist '(font . "Fira Mono-11"))
-(add-to-list 'default-frame-alist '(background-color . "gray85"))
-(set-face-attribute 'fringe nil :background "gray83")
+(require 'package)
+(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
+
+(add-to-list 'default-frame-alist '(font . "Fira Mono-10"))
+
+(setq gc-cons-threshold 12800000)
+(setq read-process-output-max (* 1024 1024))
+
+(load-theme 'escuro t)
 
 (scroll-bar-mode 0)
 (menu-bar-mode 0)
 (tool-bar-mode 0)
-
-(setq read-process-output-max (* 1024 1024))
-(setq gc-cons-threshold 25600000)
 
 (electric-pair-mode 1)
 (save-place-mode 1)
@@ -38,13 +41,15 @@
 (setq outline-minor-mode-cycle t)
 (setq outline-minor-mode-cycle-filter 'bolp)
 
+(setq tab-bar-close-button-show nil
+      tab-bar-new-button-show nil)
+
 (setq ediff-window-setup-function 'ediff-setup-windows-plain)
 (setq ediff-keep-variants nil)
 (setq diff-font-lock-syntax nil)
 (setq smerge-command-prefix "\e")
 
 (add-hook 'org-mode-hook #'org-indent-mode)
-(add-hook 'prog-mode-hook #'display-line-numbers-mode)
 
 (global-set-key "\C-cl" #'org-store-link)
 (global-set-key "\C-ca" #'org-agenda)
