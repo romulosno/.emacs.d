@@ -1,13 +1,9 @@
-(add-to-list 'default-frame-alist '(font . "Fira Mono-11"))
-(add-to-list 'default-frame-alist '(background-color . "gray85"))
-(set-face-attribute 'fringe nil :background "gray83")
+(add-to-list 'default-frame-alist '(background-color . "gray87"))
+(set-face-attribute 'fringe nil :background "gray85")
 
 (scroll-bar-mode 0)
 (menu-bar-mode 0)
 (tool-bar-mode 0)
-
-(setq read-process-output-max (* 1024 1024))
-(setq gc-cons-threshold 25600000)
 
 (electric-pair-mode 1)
 (save-place-mode 1)
@@ -54,15 +50,6 @@
 (global-set-key "\M-u" #'upcase-dwim)
 (global-set-key "\M-l" #'downcase-dwim)
 (global-set-key "\M-c" #'capitalize-dwim)
-
-(with-eval-after-load 'eglot
-  (define-key eglot-mode-map (kbd "<f5>") #'eglot-code-actions)
-  (define-key eglot-mode-map (kbd "<f6>") #'eglot-rename)
-  (define-key eglot-mode-map (kbd "<f7>") #'eglot-format))
-
-(with-eval-after-load 'flymake
-  (define-key flymake-mode-map (kbd "M-n") #'flymake-goto-next-error)
-  (define-key flymake-mode-map (kbd "M-p") #'flymake-goto-prev-error))
 
 (with-eval-after-load 'dired
   (require 'dired-x))
