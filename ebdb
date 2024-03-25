@@ -1,9 +1,0 @@
-;; Object ebdb-db-file-93515e
-;; EBDB file-persistent database
-(ebdb-db-file "ebdb-db-file-93515e"
-:file "ebdb"
-:label "File: ~/.emacs.d/ebdb"
-:uuid
-(ebdb-field-uuid "ebdb-field-uuid-92f97e"
-:uuid "a0af3878-3158-430e-93a8-bb4093e2e557")
-:record-class ebdb-record-person)

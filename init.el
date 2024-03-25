@@ -1,11 +1,10 @@
 (when (member "Fira Mono" (font-family-list))
   (add-to-list 'default-frame-alist '(font . "Fira Mono-10")))
 
-(add-to-list 'default-frame-alist '(background-color . "gray80"))
-(set-face-attribute 'fringe nil :background "gray78")
-
 (setq gc-cons-threshold 12800000)
 (setq read-process-output-max (* 1024 1024))
+
+(load-theme 'escuro t)
 
 (scroll-bar-mode 0)
 (menu-bar-mode 0)
